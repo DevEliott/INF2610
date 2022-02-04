@@ -18,12 +18,8 @@ void question1(int choix)
     const char writeMsg[] = "75dbcb01f571f1c32e196c3a7d27f62e (printed using write)\n";
     if (choix == 1)
     {
-        for (int i = 0; i < strlen(printfMsg); i++)
-        {
-            char c = printfMsg[i];
-            printf("%c", c);
-        }
-        write(1, writeMsg, strlen(writeMsg));
+        printf("%s", printfMsg);
+        write(STDOUT_FILENO, writeMsg, strlen(writeMsg));
         printf("\n");
     }
     else if (choix == 2)
@@ -41,7 +37,7 @@ void question1(int choix)
         }
         printf("%s", printfMsg);
         // setvbuf(file, NULL, _IONBF, BUFSIZ);
-        write(1, writeMsg, strlen(writeMsg));
+        write(STDOUT_FILENO, writeMsg, strlen(writeMsg));
         fclose(file);
     }
 }
