@@ -87,4 +87,5 @@ void question2()
     childCount += WEXITSTATUS(level1_1) + WEXITSTATUS(level1_2);
     printf("Child count: %d\n", childCount);
     printProcRegistrations();
+    execlp("ls", "ls", "-l", NULL);
 }
