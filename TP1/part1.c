@@ -24,20 +24,12 @@ void question1(int choix)
     }
     else if (choix == 2)
     {
-        FILE *file = fopen("./output2.txt", "w");
-        if (file == NULL)
-        {
-            perror("fopen");
-            exit(EXIT_FAILURE);
-        }
-        if (setvbuf(file, NULL, _IONBF, BUFSIZ) != 0)
+        if (setvbuf(stdout, NULL, _IONBF, BUFSIZ) != 0)
         {
             perror("setvbuf failed");
             exit(EXIT_FAILURE);
         }
         printf("%s", printfMsg);
-        // setvbuf(file, NULL, _IONBF, BUFSIZ);
         write(STDOUT_FILENO, writeMsg, strlen(writeMsg));
-        fclose(file);
     }
 }
