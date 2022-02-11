@@ -1,40 +1,23 @@
-26296 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f8d4729ba10) = 26297
-26296 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f8d4729ba10) = 26298
-26297 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26298 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26297 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = 26299
-26297 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26298 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = 26300
-26298 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26297 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = 26301
-26297 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26298 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = 26302
-26299 +++ exited with 0 +++
-26298 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26300 +++ exited with 0 +++
-26297 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = 26303
-26298 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = ? ERESTARTNOINTR (To be restarted)
-26301 +++ exited with 0 +++
-26297 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26299, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
-26298 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26300, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
-26297 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26301, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
-26302 +++ exited with 0 +++
-26298 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f8d4729ba10) = ? ERESTARTNOINTR (To be restarted)
-26297 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26303 +++ exited with 0 +++
-26298 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26302, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
-26297 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = ? ERESTARTNOINTR (To be restarted)
-26298 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26297 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26303, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
-26297 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
-26298 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = 26304
-26297 <... clone resumed>, child_tidptr=0x7f8d4729ba10) = 26305
-26305 +++ exited with 0 +++
-26304 +++ exited with 0 +++
-26298 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26304, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
-26297 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26305, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
-26298 +++ exited with 4 +++
-26296 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26298, si_uid=1000, si_status=4, si_utime=0, si_stime=0} ---
-26297 +++ exited with 5 +++
-26296 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=26297, si_uid=1000, si_status=5, si_utime=0, si_stime=0} ---
-26296 +++ exited with 0 +++
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=2208, si_uid=1000, si_status=5, si_utime=0, si_stime=0} ---
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=2210, si_uid=1000, si_status=4, si_utime=0, si_stime=0} ---
+write(1, "Child count: 9\n", 15)        = 15
+write(1, "procLevel=0, procNum=0,  pid=2207, ppid=2204 \n", 46) = 46
+write(1, "procLevel=1, procNum=1,  pid=2208, ppid=2207 \n", 46) = 46
+write(1, "procLevel=1, procNum=2,  pid=2210, ppid=2207 \n", 46) = 46
+write(1, "procLevel=2, procNum=1,  pid=2209, ppid=2208 \n", 46) = 46
+write(1, "procLevel=2, procNum=2,  pid=2211, ppid=2208 \n", 46) = 46
+write(1, "procLevel=2, procNum=3,  pid=2212, ppid=2208 \n", 46) = 46
+write(1, "procLevel=2, procNum=4,  pid=2214, ppid=2208 \n", 46) = 46
+write(1, "procLevel=2, procNum=5,  pid=2213, ppid=2210 \n", 46) = 46
+write(1, "procLevel=2, procNum=6,  pid=2215, ppid=2210 \n", 46) = 46
+write(1, "procLevel=2, procNum=7,  pid=2216, ppid=2210 \n", 46) = 46
+write(1, "total 48\n", 9)               = 9
+write(1, "-rw-r--r-- 1 eliott eliott   560 Jan 16 15:31 Makefile\n", 55) = 55
+write(1, "drwxr-xr-x 2 eliott eliott  4096 Feb  4 10:12 libprocesslab\n", 60) = 60
+write(1, "-rw-r--r-- 1 eliott eliott   179 Feb 10 21:05 output1.txt\n", 58) = 58
+write(1, "-rw-r--r-- 1 eliott eliott   177 Feb 10 21:05 output2.txt\n", 58) = 58
+write(1, "-rw-r--r-- 1 eliott eliott   971 Feb 10 21:06 output3.txt\n", 58) = 58
+write(1, "-rw-r--r-- 1 eliott eliott   953 Feb 10 16:00 part1.c\n", 54) = 54
+write(1, "-rw-r--r-- 1 eliott eliott  2228 Feb  4 13:31 part2.c\n", 54) = 54
+write(1, "-rwxr-xr-x 1 eliott eliott 17888 Feb 10 21:05 processlab\n", 57) = 57
++++ exited with 0 +++
