@@ -51,8 +51,8 @@ int main()
     int cmpReturned;
     wait(&cmpReturned);
     if (WIFEXITED(cmpReturned))
-        printf("CMP exit code %d\n", WEXITSTATUS(cmpReturned));
+        printf("Anonymous pipe: CMP exit code %d\n", WEXITSTATUS(cmpReturned));
     else
-        printf("Child did not terminate with exit\n");
+        printf("Anonymous pipe: Child did not terminate with exit\n");
     return 0;
 }
