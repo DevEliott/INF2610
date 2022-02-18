@@ -5,79 +5,54 @@
 
 int main()
 {
-    int fd2[2];
-    pipe(fd2);
-    // Processus P3
+    // Processus P3 exécute: "cmp - In.txt -s"
     if (fork() == 0)
     {
-        // Processus P2
+        int pipe2[2];
+        pipe(pipe2);
+        // Processus P2 exécute: "rev"
         if (fork() == 0)
         {
-            int fd1[2];
-            pipe(fd1);
-            // Processus P1
+            int pipe1[2];
+            pipe(pipe1);
+            // Processus P1 exécute: "rev < In.txt"
             if (fork() == 0)
             {
                 int fileIn = open("In.txt", O_RDONLY);
                 dup2(fileIn, 0);
-                dup2(fd1[0], 1);
                 close(fileIn);
-                close(fd1[0]);
-                close(fd1[1]);
-                close(fd2[0]);
-                close(fd2[1]);
-                execlp("rev", "rev In.txt", NULL);
+
+                dup2(pipe1[1], 1);
+                close(pipe1[0]);
+                close(pipe1[1]);
+                close(pipe2[0]);
+                close(pipe2[1]);
+
+                execlp("rev", "rev", NULL);
                 _exit(1);
             }
-            dup2(fd1[0], 0);
-            dup2(fd2[0], 1);
-            close(fd1[0]);
-            close(fd1[1]);
-            close(fd2[0]);
-            close(fd2[1]);
+            dup2(pipe1[0], 0);
+            dup2(pipe2[1], 1);
+            close(pipe1[0]);
+            close(pipe1[1]);
+            close(pipe2[0]);
+            close(pipe2[1]);
             wait(NULL);
             execlp("rev", "rev", NULL);
             _exit(1);
         }
-        dup2(fd2[0], 0);
-        close(fd2[0]);
-        close(fd2[1]);
+        dup2(pipe2[0], 0);
+        close(pipe2[0]);
+        close(pipe2[1]);
         wait(NULL);
         execlp("cmp", "cmp", "-", "In.txt", "-s", NULL);
         _exit(1);
     }
-    close(fd2[0]);
-    close(fd2[1]);
-    wait(NULL);
-    printf("FIN\n");
+    int cmpReturned;
+    wait(&cmpReturned);
+    if (WIFEXITED(cmpReturned))
+        printf("CMP exit code %d\n", WEXITSTATUS(cmpReturned));
+    else
+        printf("Child did not terminate with exit\n");
     return 0;
 }
-// int main()
-// {
-//     int fd[2];
-//     pipe(fd);
-//     if (fork() == 0)
-//     {
-//         dup2(fd[1], 1);
-//         close(fd[0]);
-//         close(fd[1]);
-//         execl("/bin/ls", "ls", NULL);
-//         _exit(1);
-//     }
-
-//     if (fork() == 0)
-//     {
-//         dup2(fd[0], 0);
-//         close(fd[0]);
-//         close(fd[1]);
-
-//         execl("/bin/cat", "cat", NULL);
-//         _exit(1);
-//     }
-//     close(fd[0]);
-//     close(fd[1]);
-//     while (wait(NULL) > 0)
-//     {
-//     }
-//     return 0;
-// }
