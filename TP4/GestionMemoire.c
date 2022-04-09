@@ -1,4 +1,5 @@
 #include "./libs/lib.h"
+#include "stdio.h"
 #define TAILLE_PAGE 1024
 
 unsigned int calculerNumeroDePage(unsigned long adresse)
@@ -20,7 +21,7 @@ void rechercherTLB(struct RequeteMemoire *req, struct SystemeMemoire *mem)
 {
 	for (unsigned int i = 0; i < TAILLE_TLB; i++)
 	{
-		if (mem->tlb->numeroPage[i] == calculerNumeroDePage(req->adresseVirtuelle))
+		if (mem->tlb->numeroPage[i] == calculerNumeroDePage(req->adresseVirtuelle) && mem->tlb->entreeValide[i])
 		{
 			req->adressePhysique = calculerAdresseComplete(mem->tlb->numeroCadre[i], calculerDeplacementDansLaPage(req->adresseVirtuelle));
 			req->estDansTLB = 1;
@@ -33,15 +34,12 @@ void rechercherTLB(struct RequeteMemoire *req, struct SystemeMemoire *mem)
 
 void rechercherTableDesPages(struct RequeteMemoire *req, struct SystemeMemoire *mem)
 {
-
-	for (unsigned int i = 0; i < TAILLE_TP; i++)
+	unsigned int numeroPageReq = calculerNumeroDePage(req->adresseVirtuelle);
+	if (mem->tp->entreeValide[numeroPageReq])
 	{
-		if (mem->tp->numeroCadre[i] == calculerNumeroDePage(req->adresseVirtuelle))
-		{
-			req->adressePhysique = calculerAdresseComplete(mem->tp->numeroCadre[i], calculerDeplacementDansLaPage(req->adresseVirtuelle));
-			req->estDansTablePages = 1;
-			return;
-		}
+		req->adressePhysique = calculerAdresseComplete(mem->tp->numeroCadre[numeroPageReq], calculerDeplacementDansLaPage(req->adresseVirtuelle));
+		req->estDansTablePages = 1;
+		return;
 	}
 	req->adressePhysique = 0;
 }
